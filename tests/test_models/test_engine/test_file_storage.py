@@ -24,7 +24,7 @@ class test_FileStorage(unittest.TestCase):
         self.assertEqual(storage.all(), storage._FileStorage__objects)
         data_dic = self.model.to_dict()
         data_storage = storage.all()
-        key = data_dic["__class__"] +  "." + data_dic["id"]
+        key = data_dic["__class__"] + "." + data_dic["id"]
         c1 = data_dic["created_at"]
         u1 = data_dic["updated_at"]
         self.assertEqual(key in data_storage, True)
@@ -58,6 +58,7 @@ class test_FileStorage(unittest.TestCase):
         f2 = loaded[key]
         for data in f2:
             self.assertEqual(f1[data], f2[data])
+
 
 if __name__ == '__main__':
     unittest.main()

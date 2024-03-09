@@ -2,9 +2,7 @@
 """ Test Module for Base Module """
 from models.base_model import BaseModel
 import unittest
-import json
 from datetime import datetime
-
 
 
 class test_BaseModel(unittest.TestCase):
@@ -27,6 +25,7 @@ class test_BaseModel(unittest.TestCase):
         self.assertIsInstance(self.model.updated_at, datetime)
         self.model.save()
         self.assertNotEqual(self.model.updated_at, self.model.created_at)
+
 
 if __name__ == '__main__':
     unittest.main()
