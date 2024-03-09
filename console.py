@@ -19,5 +19,9 @@ class HBNBCommand(cmd.Cmd):
         """ Prints help command description """
         print("Provides description of a given command")
 
+    def emptyline(self):
+        """ Nothing happen when empty line """
+        pass
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
