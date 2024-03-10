@@ -59,6 +59,17 @@ class test_FileStorage(unittest.TestCase):
         for data in f2:
             self.assertEqual(f1[data], f2[data])
 
+    def test5_attr(self):
+        """ Checking Attributes """
+        self.assertEqual(hasattr(FileStorage, '_FileStorage__file_path'), True)
+        self.assertEqual(hasattr(FileStorage, '_FileStorage__objects'), True)
+
+    def test6_save(self):
+        """verify if JSON exists"""
+        self.model.save()
+        self.assertEqual(os.path.exists(storage._FileStorage__file_path), True)
+        self.assertEqual(storage.all(), storage._FileStorage__objects)
+
 
 if __name__ == '__main__':
     unittest.main()
