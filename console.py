@@ -21,6 +21,27 @@ class HBNBCommand(cmd.Cmd):
             print(new_model.id)
             new_model.save()
 
+    def do_show(self, line):
+        """ Prints the string representation of an instance
+        based on the class name and id """
+        if not line:
+            print("** class name missing **")
+            return
+        args = line.split(" ")
+        if args[0] not in self.classes:
+            print("** class doesn't exist **")
+        elif len(args) == 1:
+            print("** instance id missing **")
+        else:
+            data = storage.all()
+            for key, value in data.items():
+                ins_name = value.__class__.__name__
+                ins_id = value.id
+                if (ins_name == args[0]) and (ins_id == args[1]):
+                    print(value)
+                    return
+            print("** no instance found **")
+
     def do_quit(self, line):
         """ Quit command """
         return True
