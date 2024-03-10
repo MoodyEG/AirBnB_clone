@@ -15,8 +15,8 @@ class HBNBCommand(cmd.Cmd):
     """ CMD....nothing more to say """
     prompt = "(hbnb) "
     classes = {'BaseModel': BaseModel, 'User': User,
-                'Amenity': Amenity, 'Place': Place,
-                'Review': Review, 'State': State, 'City': City}
+               'Amenity': Amenity, 'Place': Place,
+               'Review': Review, 'State': State, 'City': City}
 
     def do_create(self, line):
         """ Creates a new instance of BaseModel and prints the id"""
