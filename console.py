@@ -18,7 +18,7 @@ class HBNBCommand(cmd.Cmd):
                'Amenity': Amenity, 'Place': Place,
                'Review': Review, 'State': State, 'City': City}
     commands = ["create", "show", "update",
-                "destroy", "all"]
+                "destroy", "all", "count"]
 
     def precmd(self, line):
         """ Enables another type of syntax """
@@ -27,6 +27,8 @@ class HBNBCommand(cmd.Cmd):
             command = cls[1].split("(")
             args = command[1].split(")")
             if cls[0] in self.classes and command[0] in self.commands:
+                if command[0] == "update" and args[0] is not None:
+                    args[0] = args[0].replace(", ", " ")
                 line = command[0] + " " + cls[0] + " " + args[0]
         return line
 
@@ -138,6 +140,16 @@ class HBNBCommand(cmd.Cmd):
                     storage.save()
                     return
             print("** no instance found **")
+
+    def do_count(self, line):
+        """ Prints the number of instances of a class """
+        count = 0
+        data = storage.all()
+        for key, value in data.items():
+            cls = key.split(".")
+            if cls[0] == line:
+                count += 1
+        print(count)
 
     def do_quit(self, line):
         """ Quit command """
