@@ -29,7 +29,7 @@ class test_User(unittest.TestCase):
         self.assertEqual(self.my_user.last_name, "Bar")
         self.assertEqual(self.my_user.email, "airbnb@mail.com")
         self.assertEqual(self.my_user.password, "root")
-    
+
     def test3_attr(self):
         """ Checking for attributes """
         self.assertEqual(type(self.my_user.first_name), str)
