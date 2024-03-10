@@ -30,8 +30,9 @@ class FileStorage:
         if not os.path.exists(self.__file_path):
             return
         from models.base_model import BaseModel
+        from models.user import User
 
-        classes = {'BaseModel': BaseModel}
+        classes = {'BaseModel': BaseModel, 'User': User}
         with open(self.__file_path, 'r') as file:
             data = json.load(file)
         for key, value in data.items():
