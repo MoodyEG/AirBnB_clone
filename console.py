@@ -17,6 +17,18 @@ class HBNBCommand(cmd.Cmd):
     classes = {'BaseModel': BaseModel, 'User': User,
                'Amenity': Amenity, 'Place': Place,
                'Review': Review, 'State': State, 'City': City}
+    commands = ["create", "show", "update",
+                "destroy", "all"]
+
+    def precmd(self, line):
+        """ Enables another type of syntax """
+        if '.' in line and '(' in line and ')' in line:
+            cls = line.split(".")
+            command = cls[1].split("(")
+            args = command[1].split(")")
+            if cls[0] in self.classes and command[0] in self.commands:
+                line = command[0] + " " + cls[0] + " " + args[0]
+        return line
 
     def do_create(self, line):
         """ Creates a new instance of BaseModel and prints the id"""
